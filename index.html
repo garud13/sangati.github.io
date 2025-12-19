@@ -152,6 +152,17 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
+        /* Dark Mode Variables */
+        .dark-mode {
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --gray-light: #1e293b;
+            --gray: #94a3b8;
+            --gray-dark: #cbd5e1;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --box-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -162,8 +173,9 @@
             font-family: 'Inter', sans-serif;
             color: var(--dark);
             line-height: 1.7;
-            background-color: #ffffff;
+            background-color: var(--light);
             overflow-x: hidden;
+            transition: var(--transition);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -232,6 +244,31 @@
             line-height: 1.6;
         }
         
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--box-shadow-lg);
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
         /* Header & Navbar */
         .navbar {
             background-color: rgba(255, 255, 255, 0.98);
@@ -240,6 +277,12 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .navbar {
+            background-color: rgba(15, 23, 42, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         }
         
         .navbar-brand {
@@ -285,6 +328,10 @@
             background: linear-gradient(135deg, #fdfcfb 0%, #f5f7fa 100%);
             position: relative;
             overflow: hidden;
+        }
+        
+        .dark-mode .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         
         .hero-section:before {
@@ -355,7 +402,7 @@
             height: 100%;
             border-radius: 50%;
             overflow: hidden;
-            border: 12px solid white;
+            border: 12px solid var(--light);
             box-shadow: var(--box-shadow-lg);
             position: relative;
             z-index: 2;
@@ -393,7 +440,7 @@
             right: 10px;
             bottom: 10px;
             border-radius: 50%;
-            background: white;
+            background: var(--light);
         }
         
         @keyframes rotate {
@@ -483,7 +530,7 @@
         }
         
         .section-bg-light {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--light) 100%);
         }
         
         /* About Section */
@@ -495,13 +542,17 @@
         }
         
         .contact-info-card {
-            background: white;
+            background: var(--light);
             border-radius: var(--border-radius);
             padding: 2.5rem;
             box-shadow: var(--box-shadow);
             height: 100%;
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+        }
+        
+        .dark-mode .contact-info-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .contact-info-card:hover {
@@ -546,6 +597,10 @@
             border-left: 5px solid #f59e0b;
         }
         
+        .dark-mode .verification-note {
+            background: linear-gradient(135deg, #92400e, #b45309);
+        }
+        
         .verification-note h5 {
             color: #92400e;
             margin-bottom: 0.5rem;
@@ -554,9 +609,17 @@
             gap: 10px;
         }
         
+        .dark-mode .verification-note h5 {
+            color: #fde68a;
+        }
+        
         .verification-note p {
             color: #92400e;
             margin-bottom: 0;
+        }
+        
+        .dark-mode .verification-note p {
+            color: #fde68a;
         }
         
         /* Skills Section */
@@ -610,7 +673,7 @@
         
         /* Experience & Education Cards */
         .timeline-card {
-            background: white;
+            background: var(--light);
             border-radius: var(--border-radius);
             padding: 2.5rem;
             box-shadow: var(--box-shadow);
@@ -619,6 +682,10 @@
             transition: var(--transition);
             position: relative;
             border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .timeline-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .timeline-card:hover {
@@ -664,9 +731,72 @@
             line-height: 1.6;
         }
         
+        /* Services Section */
+        .service-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .dark-mode .service-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-lg);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .service-card h4 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.8rem;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-features li i {
+            color: var(--primary-light);
+        }
+        
         /* Project Cards */
         .project-card {
-            background: white;
+            background: var(--light);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
@@ -674,6 +804,10 @@
             transition: var(--transition);
             height: 100%;
             border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .project-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .project-card:hover {
@@ -904,7 +1038,7 @@
                 height: 280px;
             }
             
-            .contact-info-card, .timeline-card, .project-card {
+            .contact-info-card, .timeline-card, .project-card, .service-card {
                 padding: 2rem;
             }
         }
@@ -972,45 +1106,14 @@
         .floating {
             animation: float 6s ease-in-out infinite;
         }
-        
-        /* Service Areas */
-        .service-areas {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .service-areas h5 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .areas-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-        
-        .area-tag {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-weight: 600;
-            color: var(--primary-light);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .area-tag.primary {
-            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-            color: white;
-        }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -1030,6 +1133,9 @@
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
@@ -1037,9 +1143,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn-primary-custom ms-2" href="#contact">Contact</a>
@@ -1059,7 +1162,6 @@
                         <div class="title gradient-text">Full Stack Developer & Software Engineer</div>
                         <p>I build scalable web applications with cutting-edge technologies. Specializing in PHP, MySQL, Python, and JavaScript to deliver efficient, maintainable solutions that drive business success.</p>
                         
-                        
                         <div class="cta-buttons">
                             <a href="tel:9639870149" class="btn btn-primary-custom">
                                 <i class="bi bi-telephone-fill"></i> Call Now
@@ -1067,8 +1169,8 @@
                             <a href="mailto:jyotikumari133100@gmail.com" class="btn btn-secondary-custom">
                                 <i class="bi bi-envelope-fill"></i> Email Me
                             </a>
-                            <a href="#projects" class="btn btn-accent">
-                                <i class="bi bi-code-slash"></i> View Projects
+                            <a href="#services" class="btn btn-accent">
+                                <i class="bi bi-code-slash"></i> View Services
                             </a>
                         </div>
                     </div>
@@ -1160,8 +1262,138 @@
         </div>
     </section>
 
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
+            <p class="section-subtitle">Comprehensive digital solutions to help businesses grow and thrive in the digital age.</p>
+            
+            <div class="row g-4">
+                <!-- Website Development -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-globe"></i>
+                        </div>
+                        <h4>Website Development</h4>
+                        <p>Professional website development services to establish your online presence and attract customers.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Static Websites</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Dynamic Websites</li>
+                            <li><i class="bi bi-check-circle-fill"></i> E-commerce Solutions</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Custom Web Applications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> WordPress Development</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Website Redesign</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Custom Software Development -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h4>Custom Software</h4>
+                        <p>Tailored software solutions to automate processes and improve business efficiency.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Web Applications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Desktop Applications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Android Applications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> CRM Systems</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Inventory Management</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Business Automation</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Discuss Project</a>
+                    </div>
+                </div>
+                
+                <!-- SEO & Digital Marketing -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h4>SEO & Digital Marketing</h4>
+                        <p>Boost your online visibility and drive targeted traffic to your website.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Search Engine Optimization</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Social Media Marketing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Content Marketing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Google Ads Management</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Local SEO</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Analytics & Reporting</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Boost Rankings</a>
+                    </div>
+                </div>
+                
+                <!-- IT Consultancy -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+                        <h4>IT Consultancy</h4>
+                        <p>Expert guidance to help you make the right technology decisions for your business.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Technology Strategy</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Digital Transformation</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Software Architecture</li>
+                            <li><i class="bi bi-check-circle-fill"></i> System Integration</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Vendor Selection</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Technical Documentation</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Consult Now</a>
+                    </div>
+                </div>
+                
+                <!-- Testing & Quality Assurance -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-bug-fill"></i>
+                        </div>
+                        <h4>Testing & QA</h4>
+                        <p>Ensure your software products are reliable, secure, and perform optimally.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Functional Testing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Performance Testing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Security Testing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Cross-browser Testing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Mobile App Testing</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Test Automation</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Test Your Project</a>
+                    </div>
+                </div>
+                
+                <!-- Server & Hosting Support -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-hdd-rack"></i>
+                        </div>
+                        <h4>Server & Hosting</h4>
+                        <p>Reliable server setup and hosting solutions to keep your applications running smoothly.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> cPanel Server Setup</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Website Migration</li>
+                            <li><i class="bi bi-check-circle-fill"></i> SSL Certificate Setup</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Server Maintenance</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Backup Solutions</li>
+                            <li><i class="bi bi-check-circle-fill"></i> 24/7 Support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom mt-3">Get Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
-    <section id="skills">
+    <section id="skills" class="section-bg-light">
         <div class="container">
             <h2 class="section-title">Technical <span class="gradient-text">Expertise</span></h2>
             <p class="section-subtitle">Mastering the tools and technologies that power modern web applications.</p>
@@ -1248,7 +1480,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section-bg-light">
+    <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional <span class="gradient-text">Journey</span></h2>
             <p class="section-subtitle">Building experience through real-world projects and continuous learning.</p>
@@ -1291,7 +1523,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
+    <section id="projects" class="section-bg-light">
         <div class="container">
             <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
             <p class="section-subtitle">Real-world solutions built with modern technologies and best practices.</p>
@@ -1339,7 +1571,6 @@
                             </div>
                             <div class="d-flex gap-2">
                                 <a href="https://chat.jsisoftwaresolutions.com/" target="_blank" class="btn btn-primary-custom btn-sm">Live Project</a>
-                               
                             </div>
                         </div>
                     </div>
@@ -1365,39 +1596,6 @@
                                 <button class="btn btn-primary-custom btn-sm" data-bs-toggle="modal" data-bs-target="#websitesModal">View Portfolio</button>
                                 <a href="tel:9639870149" class="btn btn-secondary-custom btn-sm">Get Website</a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section-bg-light">
-        <div class="container">
-            <h2 class="section-title">Education & <span class="gradient-text">Certification</span></h2>
-            <p class="section-subtitle">Strong academic foundation combined with practical, hands-on experience.</p>
-            
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="timeline-card">
-                        <span class="period">August 2020 – August 2023</span>
-                        <h4>Bachelor of Computer Applications (BCA)</h4>
-                        <div class="company">
-                            <i class="bi bi-mortarboard-fill"></i>
-                            Teerthankar Mahaveer University, Moradabad
-                        </div>
-                        <ul>
-                            <li>Built a strong foundation in computer science fundamentals including Data Structures, Algorithms, Database Management Systems, and Operating Systems.</li>
-                            <li>Gained hands-on experience in programming with C, C++, Java, PHP, and Python through academic projects and lab work.</li>
-                            <li>Learned core concepts of web development such as HTML, CSS, JavaScript, server-side scripting, and database connectivity.</li>
-                            <li>Studied software engineering principles including SDLC, requirement analysis, system design, and basic testing methodologies.</li>
-                            <li>Worked on academic mini-projects and final-year projects, applying theoretical concepts to real-world problem statements.</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="tel:9639870149" class="btn btn-primary-custom">
-                                <i class="bi bi-telephone-fill"></i> Discuss Career Opportunities
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -1451,8 +1649,6 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <div class="footer-logo">Jyoti Kumari</div>
                     <p class="mt-3" style="color: #cbd5e1; font-size: 1.1rem;">Full Stack Developer & Software Engineer</p>
-                    
-                  
                     
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/jyoti-kumari10/" target="_blank" title="LinkedIn Profile">
@@ -1536,6 +1732,31 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Check for saved theme or prefer-color-scheme
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            const currentTheme = localStorage.getItem('theme');
+            
+            if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+                document.body.classList.add('dark-mode');
+                themeIcon.className = 'bi bi-sun-fill';
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.className = 'bi bi-sun-fill';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.className = 'bi bi-moon-fill';
+                }
+            });
+            
             // Animate skill bars when they come into view
             const skillBars = document.querySelectorAll('.skill-level');
             
@@ -1589,10 +1810,14 @@
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.backgroundColor = document.body.classList.contains('dark-mode') 
+                        ? 'rgba(15, 23, 42, 0.98)'
+                        : 'rgba(255, 255, 255, 0.98)';
                     navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.08)';
                 } else {
-                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.backgroundColor = document.body.classList.contains('dark-mode')
+                        ? 'rgba(15, 23, 42, 0.98)'
+                        : 'rgba(255, 255, 255, 0.98)';
                     navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
                 }
             });
@@ -1648,13 +1873,33 @@
             const printBtn = document.createElement('button');
             printBtn.innerHTML = '<i class="bi bi-printer"></i> Print Resume';
             printBtn.className = 'btn btn-secondary-custom position-fixed d-none d-md-block';
-            printBtn.style.bottom = '20px';
-            printBtn.style.right = '20px';
+            printBtn.style.bottom = '90px';
+            printBtn.style.right = '30px';
             printBtn.style.zIndex = '1000';
             printBtn.addEventListener('click', function() {
                 window.print();
             });
             document.body.appendChild(printBtn);
+            
+            // Service cards animation on scroll
+            const serviceCards = document.querySelectorAll('.service-card');
+            const serviceObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                serviceObserver.observe(card);
+            });
         });
     </script>
 </body>
